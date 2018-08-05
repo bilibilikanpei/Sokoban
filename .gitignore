@@ -1,2 +1,6 @@
 # My configurations:
 .project
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
