@@ -1,0 +1,49 @@
+html,
+			body {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				position: relative;
+				background: url('./工作细胞.jpg')
+			}
+			
+			.box {
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				position: absolute;
+			}
+			
+			#people {
+				width: 50px;
+				height: 50px;
+				font-size: 2.5em;
+				text-align: center;
+				line-height: 45px;
+				border: 2px solid black;
+				box-sizing: border-box;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				z-index: 100;
+			}
+			
+			.target {
+				width: 50px;
+				height: 50px;
+				background-color: lawngreen;
+				position: absolute;
+			}
+			
+			.overlap {
+				background-color: deepskyblue;
+				transform: scale(1.1);
+			}
+			
+			.wall {
+				width: 50px;
+				height: 50px;
+				background-color: gray;
+				position: absolute;
+			}
