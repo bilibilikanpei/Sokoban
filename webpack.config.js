@@ -1,7 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const webpack = require('webpack');
 module.exports = {
+  mode: 'development',
   entry: {
     app: './src/index.js'
   },
@@ -11,6 +12,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
+    port: 8000,
     contentBase: './dist'
   },
   plugins: [
@@ -20,6 +22,13 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.jsx$/,
+        loader: 'babel-loader',
+        query: {
+          preset: ['es2015']
+        }
+      },
       {
         test: /\.css$/,
         use: [
