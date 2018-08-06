@@ -57,13 +57,12 @@ export default class Boxes {
                     break;
                 default:
             }
-            //重置推动箱子序号为-1
-            this.box_item = -1
-            console.log(this.box_item);
         }
+        
     }
     //遍历是否会推动箱子
     virtual_box(people) {
+        //此方法记录了box_item 和 lastDir数据 箱子移动之后都要重置
         for (let i = 0, length = this.positionList.length; i < length; i++) {
             if (this.positionList[i].left === people.virtual_left && this.positionList[i].top === people.virtual_top) {
                 switch (people.lastDir) {

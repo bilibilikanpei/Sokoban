@@ -39,7 +39,12 @@ document.body.onkeydown = (e) => {
         Sokoban.people.handler();
         Sokoban.boxes.move(); //walls中的imgBoxIndex会被重置未-1
         Sokoban.targets.check(Sokoban.boxes);
+
+
     }
+    //重置推动箱子序号为-1和上次操作记录为0
+    Sokoban.boxes.box_item = -1;
+    Sokoban.boxes.lastDir = 0;
 };
 if (module.hot) {
     module.hot.accept();

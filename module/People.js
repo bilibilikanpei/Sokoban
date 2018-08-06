@@ -33,17 +33,21 @@ export default class People {
         switch (e.keyCode) {
             case 37:
                 this.virtual_left = this.left - 50;
+                this.virtual_top = this.top;
                 this.lastDir = e.keyCode;
                 break;
             case 38:
+                this.virtual_left = this.left;
                 this.virtual_top = this.top - 50;
                 this.lastDir = e.keyCode;
                 break;
             case 39:
                 this.virtual_left = this.left + 50;
+                this.virtual_top = this.top;
                 this.lastDir = e.keyCode;
                 break;
             case 40:
+                this.virtual_left = this.left;
                 this.virtual_top = this.top + 50;
                 this.lastDir = e.keyCode;
                 break;
