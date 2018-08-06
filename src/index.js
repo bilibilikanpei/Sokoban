@@ -21,15 +21,25 @@ Sokoban.walls.creatWall(150, 150);
 document.body.onkeydown = (e) => {
     //				能阻止移动的情况一:墙挡住人或者箱子
     //				能组织移动的情况二:箱子移动的方向还有箱子
-    if (Sokoban.walls.check(e, Sokoban.people, Sokoban.boxes)) {
-        if (Sokoban.boxes.checkBox(e, Sokoban.walls)) {
-            Sokoban.people.handler(e);
-            Sokoban.boxes.move(e, Sokoban.walls); //walls中的imgBoxIndex会被重置未-1
-            Sokoban.targets.check(Sokoban.boxes);
-        };
-    }
+    // if (Sokoban.walls.check(e, Sokoban.people, Sokoban.boxes)) {
+    //     if (Sokoban.boxes.checkBox(e, Sokoban.walls)) {
+    //         Sokoban.people.handler(e);
+    //         Sokoban.boxes.move(e, Sokoban.walls); //walls中的imgBoxIndex会被重置未-1
+    //         Sokoban.targets.check(Sokoban.boxes);
+    //     };
+    // }
 
-    Sokoban.walls.imgBoxIndex = -1; //每次移动之后，都在最后重置某些属性
+    // Sokoban.walls.imgBoxIndex = -1; //每次移动之后，都在最后重置某些属性
+
+
+    Sokoban.people.virtual_people(e);
+    Sokoban.boxes.virtual_box(Sokoban.people)
+    console.log(Sokoban.walls.stop_people(Sokoban.people), Sokoban.walls.stop_box(Sokoban.boxes), Sokoban.boxes.boxToBox())
+    if (Sokoban.walls.stop_people(Sokoban.people) && Sokoban.walls.stop_box(Sokoban.boxes) && Sokoban.boxes.boxToBox()) {
+        Sokoban.people.handler();
+        Sokoban.boxes.move(); //walls中的imgBoxIndex会被重置未-1
+        Sokoban.targets.check(Sokoban.boxes);
+    }
 };
 if (module.hot) {
     module.hot.accept();
