@@ -1,3 +1,4 @@
+import Option from '../options/const';
 export default class Boxes {
     constructor() {
         this.positionList = []; //保存箱子位置
@@ -58,13 +59,15 @@ export default class Boxes {
                 default:
             }
         }
-        
+
     }
     //遍历是否会推动箱子
     virtual_box(people) {
         //此方法记录了box_item 和 lastDir数据 箱子移动之后都要重置
         for (let i = 0, length = this.positionList.length; i < length; i++) {
             if (this.positionList[i].left === people.virtual_left && this.positionList[i].top === people.virtual_top) {
+                //找到要推动的箱子 并记录下序号
+                this.box_item = i;
                 switch (people.lastDir) {
                     case 37:
                         this.virtual_left = people.virtual_left - 50;
@@ -87,9 +90,6 @@ export default class Boxes {
                         this.lastDir = people.lastDir;
                         break;
                 }
-                //找到要推动的箱子 并记录下序号
-                this.box_item = i;
-                console.log('箱虚拟', this.virtual_left, this.virtual_top);
                 return;
             }
         }
@@ -102,47 +102,6 @@ export default class Boxes {
             for (let i = 0, length = this.positionList.length; i < length; i++) {
                 if (this.positionList[i].top === this.virtual_top && this.positionList[i].left === this.virtual_left) {
                     //找到挡住的箱子 阻止箱子移动
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    checkBox(e, walls) {
-        //		墙已经阻挡人和箱子 检查箱子是否阻止箱子
-        //		计算箱子将要移动到的位置
-        //		imgBoxIndex要大于0即代表找到要推动的箱子
-        if (walls.imgBoxIndex > -1) {
-            let imgBoxPo = null;
-            switch (e.keyCode) {
-                case 37:
-                    imgBoxPo = {
-                        top: walls.imgBoxPo.top,
-                        left: walls.imgBoxPo.left - 50
-                    }
-                    break;
-                case 38:
-                    imgBoxPo = {
-                        top: walls.imgBoxPo.top - 50,
-                        left: walls.imgBoxPo.left
-                    }
-                    break;
-                case 39:
-                    imgBoxPo = {
-                        top: walls.imgBoxPo.top,
-                        left: walls.imgBoxPo.left + 50
-                    }
-                    break;
-                case 40:
-                    imgBoxPo = {
-                        top: walls.imgBoxPo.top + 50,
-                        left: walls.imgBoxPo.left
-                    }
-                    break;
-            }
-            for (let i = 0, len = this.positionList.length; i < len; i++) {
-                if (this.positionList[i].top === imgBoxPo.top && this.positionList[i].left === imgBoxPo.left) {
-                    //被挡住了 就返回false阻止移动
                     return false;
                 }
             }

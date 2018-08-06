@@ -1,3 +1,4 @@
+import Option from '../options/const';
 export default class People {
     constructor() {
         this.top = 0; //纵坐标
@@ -52,7 +53,6 @@ export default class People {
                 this.lastDir = e.keyCode;
                 break;
         }
-        console.log('人虚拟', this.virtual_left, this.virtual_top)
     }
     //操作人移动方法
     handler() {

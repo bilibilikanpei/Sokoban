@@ -1,3 +1,4 @@
+import Option from '../options/const';
 export default class Walls {
     constructor() {
         this.positionList = []; //墙的位置
@@ -76,65 +77,5 @@ export default class Walls {
         }
         //允许箱子移动
         return true;
-    }
-    check(e, people, boxes) {
-        let temp = this.findBox(e, people, boxes);
-        for (let i = 0; i < this.forbidList.length; i++) {
-            if (this.forbidList[i].top === people.top && this.forbidList[i].left === people.left && this.forbidList[i].dir === e.keyCode) {
-                //							禁止移动
-                return false;
-            }
-            //确实找到假想的箱子才可以进行判断
-            if (temp) {
-                if (this.forbidList[i].top === this.imgBoxPo.top && this.forbidList[i].left === this.imgBoxPo.left && this.forbidList[i].dir === e.keyCode) {
-                    //									禁止移动
-                    //this.imgBoxIndex = -1 walls找到的箱子经过了验证，但还是被强挡住 这里需要重置为-1
-                    //不在这里重置了
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-    findBox(e, people, boxes) {
-        //						首先找出会移动的箱子
-        switch (e.keyCode) {
-            case 37:
-                this.imgBoxPo = {
-                    top: people.top,
-                    left: people.left - 50
-                }
-                break;
-            case 38:
-                this.imgBoxPo = {
-                    top: people.top - 50,
-                    left: people.left
-                }
-                break;
-            case 39:
-                this.imgBoxPo = {
-                    top: people.top,
-                    left: people.left + 50
-                }
-                break;
-            case 40:
-                this.imgBoxPo = {
-                    top: people.top + 50,
-                    left: people.left
-                }
-                break;
-            default:
-                //这个默认return修复 按键不是上下左右就无须判断移动了
-                return false;
-        }
-        //					遍历是否有这个位置的箱子
-        for (let i = 0; i < boxes.positionList.length; i++) {
-            if (boxes.positionList[i].top === this.imgBoxPo.top && boxes.positionList[i].left === this.imgBoxPo.left) {
-                //找到序号为i的箱子
-                this.imgBoxIndex = i;
-                return true;
-            }
-        }
-        return false;
     }
 }
